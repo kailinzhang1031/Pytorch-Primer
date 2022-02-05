@@ -100,7 +100,7 @@ True
 | torch.argmin() | position of min value |
 | torch.sort(A) | sort 1-D tensor |
 | torch.sort(A, descending=True) | sort tensor in descending |
-| Bsort, Bsort_id(B) | sort 2-D tensor |
+| Bsort, Bsort_id(B) = torch.sort(B) | sort 2-D tensor |
 | torch.topk() | Returns the k largest elements of the given input tensor along a given dimension.|
 | torch.kthvalue() | Returns a namedtuple ```(values, indices)``` where ```values``` is the ```k``` th smallest element 
 | | of each row of the input tensor in the given dimension dim. And indices is the index location of each element found.|
