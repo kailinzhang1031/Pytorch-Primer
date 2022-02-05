@@ -1,4 +1,4 @@
-# 2.2.3 Scalar Operation
+# 2.2.3 Tensor Operation
 
 ## 1. Reshape
 
