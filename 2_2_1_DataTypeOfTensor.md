@@ -1,4 +1,4 @@
-# CheckPoint 2.2.1 Data Types Of Scalar
+# CheckPoint 2.2.1 Data Types Of Tensor
 
 ##  1.  Initializing and basic operations
 
