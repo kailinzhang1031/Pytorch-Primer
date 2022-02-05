@@ -1,4 +1,4 @@
-### 2.2.2 Scalar Generation
+### 2.2.2 Tensor Generation
 
 #### (1) ```torch.tensor()```
 
