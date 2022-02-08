@@ -102,17 +102,12 @@ True
 | torch.sort(A, descending=True) | sort tensor in descending |
 | Bsort, Bsort_id(B) = torch.sort(B) | sort 2-D tensor |
 | torch.topk() | Returns the k largest elements of the given input tensor along a given dimension.|
-| torch.kthvalue() | Returns a namedtuple ```(values, indices)``` where ```values``` is the ```k``` th smallest element 
-| | of each row of the input tensor in the given dimension dim. And indices is the index location of each element found.|
+| torch.kthvalue() | Returns a namedtuple ```(values, indices)``` where ```values``` is the ```k``` th smallest element of each row of the input tensor in the given dimension dim.<br>And indices is the index location of each element found. |
 | torch.mean() | Returns the mean value of all elements in the input tensor. |
 | torch.sum() | Returns the sum of all elements in the input tensor. |
 | torch.cumsum() | Returns the cumulative sum of elements of input in the dimension ```dim```. |
 | torch.median() | Returns the median of the values in input. |
 | torch.std() | Calculates the standard deviation of all elements in the input tensor.<br>unbiased (bool) – whether to use Bessel’s correction $(\delta N = 1)$. <br>If unbiased is True, Bessel’s correction will be used. Otherwise, the sample deviation is calculated, without any correction.<br>dim (int or tuple of python:ints) – the dimension or dimensions to reduce. |
-
-| | 
-| | 
-| | 
 
 
 
