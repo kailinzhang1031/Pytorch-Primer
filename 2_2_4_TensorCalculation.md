@@ -48,7 +48,7 @@ False
 True
 ```
 
-## 2. Basic Calculations
+## 2. Basic Calculation
 ### 2.1 Elements Calculation
 - addition ```A + B```
 - minus ```A - B```
@@ -91,7 +91,7 @@ True
     ```python
     torch.trace(torch.arrange(9.0).reshape(3,3))
     ```
-### Statistic Calculation
+## 3.Statistic Calculation
 | Function | Description |
 | :---: | :---: |
 | torch.max() | max value |
@@ -108,10 +108,11 @@ True
 | torch.sum() | Returns the sum of all elements in the input tensor. |
 | torch.cumsum() | Returns the cumulative sum of elements of input in the dimension ```dim```. |
 | torch.median() | Returns the median of the values in input. |
-| torch.std() | Calculates the standard deviation of all elements in the input tensor. |
-| | unbiased (bool) – whether to use Bessel’s correction $(\delta N = 1)$. 
-| | If unbiased is True, Bessel’s correction will be used. Otherwise, the sample deviation is calculated, without any correction.
-| | dim (int or tuple of python:ints) – the dimension or dimensions to reduce.
+| torch.std() | Calculates the standard deviation of all elements in the input tensor.<br>unbiased (bool) – whether to use Bessel’s correction $(\delta N = 1)$. <br>If unbiased is True, Bessel’s correction will be used. Otherwise, the sample deviation is calculated, without any correction.<br>dim (int or tuple of python:ints) – the dimension or dimensions to reduce. |
+
+| | 
+| | 
+| | 
 
 
 
