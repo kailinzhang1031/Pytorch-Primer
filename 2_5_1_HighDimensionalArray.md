@@ -6,11 +6,11 @@ Overview of tools for data preprocessing.
 
 | Class | Description |
 | :---: | :---: |
-| torch.utils.data.TensorDataset() | Dataset wrapping tensors. <br>Each sample will be retrieved by indexing tensors along the first dimension. |
-| torch.utils.data.ConcatDataset() | Dataset as a concatenation of multiple datasets. <br>This class is useful to assemble different existing datasets. |
+| torch.utils.data.TensorDataset() | Dataset wrapping tensors.<br>Each sample will be retrieved by indexing tensors along the first dimension. |
+| torch.utils.data.ConcatDataset() | Dataset as a concatenation of multiple datasets.<br>This class is useful to assemble different existing datasets. |
 | torch.utils.data.Subset() | Subset of a dataset at specified indices. |
-| torch.utils.data.Dataloader() | Data loader. Combines **a dataset and a sampler**, and provides an iterable over the given dataset. |
-| torch.utils.data.random_split() | Randomly split a dataset into non-overlapping new datasets of given lengths. <br>Optionally fix the generator for reproducible results. |
+| torch.utils.data.Dataloader() | Data loader.<br>Combines **a dataset and a sampler**, and provides an iterable over the given dataset. |
+| torch.utils.data.random_split() | Randomly split a dataset into non-overlapping new datasets of given lengths.<br>Optionally fix the generator for reproducible results. |
 
 ## 1. Boston for Regression
 
