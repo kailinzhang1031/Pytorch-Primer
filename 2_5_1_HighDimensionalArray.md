@@ -4,8 +4,8 @@
 
 Overview of tools for data preprocessing.
 
-| Class | Function |
-| :---: | :--- |
+| Class | Description |
+| :---: | :---: |
 | torch.utils.data.TensorDataset() | Dataset wrapping tensors. <br>Each sample will be retrieved by indexing tensors along the first dimension. |
 | torch.utils.data.ConcatDataset() | Dataset as a concatenation of multiple datasets. <br>This class is useful to assemble different existing datasets. |
 | torch.utils.data.Subset() | Subset of a dataset at specified indices. |
@@ -99,7 +99,7 @@ Predictive label ```iris_y``` is **numpy.ndarray** of  **int32**.
 
 Convert ```iris_x``` to  **torch.tensor** of **torch.float32**.
 
-Convert ```iris_y``` tor **torch.tensor**  of **torch.int64**.
+Convert ```iris_y``` to **torch.tensor**  of **torch.int64**.
 
 ```python
 train_xt = torch.from_numpy(iris_x.astype(np.float64))
