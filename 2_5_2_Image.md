@@ -5,8 +5,8 @@
 Overview of datasets in **torchvision**.
 
 | Class for Dataset | Description |
-| :---: | :--- : |
-| datasets.MNIST() | [Manual script]() |
+| :----: | :----: |
+| datasets.MNIST() | [Manual script]()   |
 | datasets.FashionMNIST() | [Clothes and other 10 classes]() |
 | datasets.KMNIST() | [Gray scale data of text]() |
 | datasets.CocoCaptions() | [MS COCO for image annotation]() |
@@ -16,7 +16,6 @@ Overview of datasets in **torchvision**.
 | datasets.CIFAR100() | [CIFAR of 100 classes]() |
 | datasets.STL10() | [Data of classification for 10 classes and lots of unlabeled]() | 
 | datasets.ImageFolder() | [Define a dataset and load data from folder]() |
-
 
 Overview of image operations in **transform** module of torchvision.
 
