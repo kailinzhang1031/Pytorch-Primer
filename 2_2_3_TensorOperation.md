@@ -478,19 +478,19 @@ tensor([6, 7, 8, 9])
 
 ```torch.triu(input, diagonal=0, *, out=None) → Tensor```: Returns the upper triangular part of a matrix (2-D tensor) or batch of matrices ```input```, the other elements of the result tensor ```out``` are set to 0.
 
-```torch.diag(input, diagonal=0, *, out=None) → Tensor```: 
-- If input is **a vector (1-D tensor)**, then returns a 2-D square tensor with the elements of input as the diagonal.
+```torch.diag(input, diagonal=0, *, out=None) → Tensor```:
+
+**(1)** If input is **a vector (1-D tensor)**, then returns a 2-D square tensor with the elements of input as the diagonal.
 
 ```python
->> a = torch.arange(12)
+a = torch.arange(12)
 
 tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
 
->>> a.size()
-
+a.size()
 torch.Size([12])
 
->>> b = torch.diag(a)
+b = torch.diag(a)
 
 tensor([[ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
         [ 0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
@@ -505,84 +505,84 @@ tensor([[ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
         [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 10,  0],
         [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11]])
 
->>> b.size()
+b.size()
+
 torch.Size([12, 12])
 ```
 
-- If input is **a matrix (2-D tensor)**, then returns a 1-D tensor with the diagonal elements of input.
-    ```python
-    >> a = torch.arange(25).reshape(5,5)
+**(2)** If input is **a matrix (2-D tensor)**, then returns a **1-D tensor** with the diagonal elements of input.
+```python
+a = torch.arange(25).reshape(5,5)
     
-    tensor([[ 0,  1,  2,  3,  4],
-            [ 5,  6,  7,  8,  9],
-            [10, 11, 12, 13, 14],
-            [15, 16, 17, 18, 19],
-            [20, 21, 22, 23, 24]])
+tensor([[ 0,  1,  2,  3,  4],
+        [ 5,  6,  7,  8,  9],
+        [10, 11, 12, 13, 14],
+        [15, 16, 17, 18, 19],
+        [20, 21, 22, 23, 24]])
     
-    >> a.size()
-    
-    torch.Size([5, 5])
-    
-    >> b = torch.diag(a)
-    
-    tensor([ 0,  6, 12, 18, 24])
-    
-    >> b.size()
-    
-    torch.Size([5])
-    ```
+a.size()
 
-    The argument ```diagonal``` controls which diagonal to consider:
+torch.Size([5, 5])
+    
+b = torch.diag(a)
 
-    Here we use **rectangular matrix** for example.
+tensor([ 0,  6, 12, 18, 24])
+    
+b.size()
 
-- If ```diagonal``` = 0, it is the main diagonal.
+torch.Size([5])
+```
 
-    **Main diagonal** in a rectangular matrix is considered from **the position (0,0)**.
+The argument ```diagonal``` controls which diagonal to consider:
 
-    ```python
-    >> a = torch.arange(12).reshape(3,4)
+Here we use **rectangular matrix** for example.
+
+**(1)** If ```diagonal``` = 0, we will get elements on the **main diagonal**.
+
+**Main diagonal** in a rectangular matrix is considered from **the position (0,0)**.
+
+```python
+a = torch.arange(12).reshape(3,4)
     
-    tensor([[ 0,  1,  2,  3],
-            [ 4,  5,  6,  7],
-            [ 8,  9, 10, 11]])
+tensor([[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7],
+        [ 8,  9, 10, 11]])
+
+a.size()
     
-    >> a.size()
+torch.Size([3, 4])
     
-    torch.Size([3, 4])
+b = torch.diag(a)
     
-    >> b = torch.diag(a)
+tensor([ 0,  5, 10])
     
-    tensor([ 0,  5, 10])
+b.size()
     
-    >> b.size()
-    
-    torch.Size([3])
-    ```
+torch.Size([3])
+```
 
 
-- If ```diagonal``` > 0, it is **above** the main diagonal.
-    ```python
-    >> b = torch.diag(a,diagonal=1)
+**(2)** If ```diagonal``` > 0, we will get elements **above** the main diagonal.
+```python
+b = torch.diag(a,diagonal=1)
     
-    tensor([2, 7])
+tensor([2, 7])
     
-    >> b.size()
+b.size()
     
-    torch.Size([2])
-    ```
+torch.Size([2])
+```
 
-- If ```diagonal``` < 0, it is **below** the main diagonal.
-    ```python
-    b = torch.diag(a,diagonal=-1)
+**(3)** If ```diagonal``` < 0, we will get elements **below** the main diagonal.
+```python
+ b = torch.diag(a,diagonal=-1)
     
-    tensor([4, 9])
+tensor([4, 9])
     
-    b.size()
+b.size()
     
-    torch.Size([2])
-    ```
-
+torch.Size([2])
+```
 
 ## 3. Concatenating and Splitting
 
@@ -816,25 +816,25 @@ torch.arange(13).chunk(6)
 
 - Splitting along **dimension 0**
     ```python
-      a = torch.arange(12).reshape(3,4)
-      tensor([[ 0,  1,  2,  3],
-              [ 4,  5,  6,  7],
-              [ 8,  9, 10, 11]])
+    a = torch.arange(12).reshape(3,4)
+    tensor([[ 0,  1,  2,  3],
+            [ 4,  5,  6,  7],
+            [ 8,  9, 10, 11]])
     
-      b = torch.chunk(a,3,dim=0)
-      (tensor([[0, 1, 2, 3]]), tensor([[4, 5, 6, 7]]), tensor([[ 8,  9, 10, 11]]))
+    b = torch.chunk(a,3,dim=0)
+    (tensor([[0, 1, 2, 3]]), tensor([[4, 5, 6, 7]]), tensor([[ 8,  9, 10, 11]]))
     
-      a.size()
-      torch.Size([3, 4])
+    a.size()
+    torch.Size([3, 4])
     
-      b[0]
-      tensor([[0, 1, 2, 3]])
+    b[0]
+    tensor([[0, 1, 2, 3]])
     
-      b[0].size()
-      torch.Size([1, 4])
-      ```
+    b[0].size()
+    torch.Size([1, 4])
+    ```
 - Splitting along **dimension 1**
-  ````python
+  ```python
   a = torch.arange(12).reshape(3,4)
   
   tensor([[ 0,  1,  2,  3],
@@ -843,10 +843,10 @@ torch.arange(13).chunk(6)
   
   b = torch.chunk(a,2,dim=1)
   (tensor([[0, 1],
-          [4, 5],
-          [8, 9]]), tensor([[ 2,  3],
-          [ 6,  7],
-          [10, 11]]))
+           [4, 5],
+           [8, 9]]), tensor([[ 2,  3],
+           [6,  7],
+           [10, 11]]))
     
   a.size()
   torch.Size([3, 4])
