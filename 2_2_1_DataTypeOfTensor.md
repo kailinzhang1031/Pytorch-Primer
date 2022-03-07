@@ -7,16 +7,15 @@
 A tensor can be constructed from a Python list or sequence using the ``torch.tensor()`` **constructor**:
 
 ```python
->>> torch.tensor([[1., -1.], [1., -1.]])
+torch.tensor([[1., -1.], [1., -1.]])
 
 tensor([[ 1.0000, -1.0000],
         [ 1.0000, -1.0000]])
 
->>> torch.tensor(np.array([[1, 2, 3], [4, 5, 6]]))
+torch.tensor(np.array([[1, 2, 3], [4, 5, 6]]))
 
 tensor([[ 1,  2,  3],
         [ 4,  5,  6]])
-
 ```
 
 ### 1.2 Data Type
@@ -25,13 +24,13 @@ A tensor of specific data type can be constructed by passing a ```torch.dtype```
 to a **constructor** or **tensor creation op**:
 
 ```python
->>> torch.zeros([2, 4], dtype=torch.int32)
+torch.zeros([2, 4], dtype=torch.int32)
 tensor([[ 0,  0,  0,  0],
         [ 0,  0,  0,  0]], dtype=torch.int32)
 
->>> cuda0 = torch.device('cuda:0')
+cuda0 = torch.device('cuda:0')
 
->>> torch.ones([2, 4], dtype=torch.float64, device=cuda0)
+torch.ones([2, 4], dtype=torch.float64, device=cuda0)
 tensor([[ 1.0000,  1.0000,  1.0000,  1.0000],
         [ 1.0000,  1.0000,  1.0000,  1.0000]], dtype=torch.float64, device='cuda:0')
 
@@ -40,14 +39,12 @@ tensor([[ 1.0000,  1.0000,  1.0000,  1.0000],
 
 > Class Torch.Tensor
 
-A torch.Tensor is a multi-dimensional matrix containing elements of a single data type<sup>[1]</sup>.
+A **torch.Tensor** is a multi-dimensional matrix containing elements of a single data type<sup>[1]</sup>.
 
-Torch defines 10 tensor types with CPU and GPU variants which are as follows:
+Torch defines 10 tensor types with CPU and GPU variants which are as follows.
 
-![](D:\Program Data\Pycharm Projects\Practice\Pytorch_Primer\Images\2_2_datatype.jpg)
+##### 1.2.2 Data Type Conversion
 
-
-##### 1.2.2 Data Type Transformation
 ```Tensor.int()``` is a function used to transfer data between different datatypes.
 ```self.int()``` is equivalent to ```self.to(torch.int32)```.
 
@@ -83,15 +80,15 @@ torch.float64
 
 ##### 1.2.3 Get Default Data Type
 
-```torch.get_default_dtype() → torch.dtype```
+> torch.get_default_dtype() → torch.dtype
 
 Get the current default floating point ```torch.dtype```.
 
-Examples:
+- Examples:
 
-Initial default for floating point is torch.float32:
+Initial default for floating point is ```torch.float32```:
 ```python
->>> torch.get_default_dtype()
+torch.get_default_dtype()
 torch.float32
 ```
 
@@ -105,10 +102,11 @@ torch.float64
 ```
 Setting tensor type also affects this:
 ```python
->>> torch.set_default_tensor_type(torch.FloatTensor)
+torch.set_default_tensor_type(torch.FloatTensor)
 ```
-Changed to ```torch.float32```, the dtype for torch.FloatTensor:
+Changed to ```torch.float32```, the dtype for **torch.FloatTensor**:
 ```python
->>> torch.get_default_dtype()
+torch.get_default_dtype()
+
 torch.float32
 ```
