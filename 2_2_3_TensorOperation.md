@@ -6,34 +6,35 @@
 
 > torch.reshape(input, shape) → Tensor
 
-Returns a tensor with the same data and number of elements as input, but with the specified shape. 
-When possible, the returned tensor will be a view of input. 
+Returns a tensor with the same data and number of elements as input, but with the specified shape.
+
+When possible, the returned tensor will be a **view** of input. 
+
 Otherwise, it will be a copy. 
 
-#### Parameters
+ - Parameters
 
-- **input** (Tensor) – the tensor to be reshaped
+   - **input** (Tensor) – the tensor to be reshaped
 
-- **shape** (tuple of python:ints) – the new shape
+   - **shape** (tuple of python:ints) – the new shape
 
 
-#### Example
-```python
->>> a = torch.arange(4.)
->>> torch.reshape(a, (2, 2))
-tensor([[ 0.,  1.],
-        [ 2.,  3.]])
-```
-```python
->>> b = torch.tensor([[0, 1], [2, 3]])
->>> torch.reshape(b, (-1,))
-tensor([ 0,  1,  2,  3])
+ - Examples
+  ```python
+  a = torch.arange(4.)
+  torch.reshape(a, (2, 2))
+  tensor([[ 0.,  1.],
+          [ 2.,  3.]])
+  ```
+  ```python
+  b = torch.tensor([[0, 1], [2, 3]])
+  torch.reshape(b, (-1,))
+  tensor([ 0,  1,  2,  3])
+  ```
 
-```
+**torch.reshape()** is simillar to **torch.view()**
 
-torch.reshape() is simillar to torch.view()
-
-For more detailed illustration, please click here.
+For more detailed illustration, please click here:
 
 https://blog.csdn.net/Flag_ing/article/details/109129752
 
@@ -45,11 +46,12 @@ https://stackoverflow.com/questions/49643225/whats-the-difference-between-reshap
 > Tensor.resize_as_(tensor, memory_format=torch.contiguous_format) → Tensor
 
 Resizes the ```self``` tensor to be the same size as the specified ```tensor```. 
+
 This is equivalent to ```self.resize_(tensor.size())```.
 
-##### Parameter 
-- **memory_format** (```torch.memory_format```, optional) – the desired memory format of Tensor. 
-Default: torch.contiguous_format.
+- Parameter 
+  - **memory_format** (```torch.memory_format```, optional) – the desired memory format of Tensor. 
+    Default: torch.contiguous_format.
 
 ### 1.3.1 Torch.unsqueeze
 
@@ -60,24 +62,127 @@ Returns a new tensor with a dimension of size one inserted at the specified posi
 The returned tensor shares the same underlying data with this tensor.
 
 A **dim** value within the range **[-input.dim() - 1, input.dim() + 1)** can be used. 
-Negative dim will correspond to ```unsqueeze()``` applied at **dim** = **dim** + input.dim() + 1.
+
+Negative **dim** will correspond to ```unsqueeze()``` applied at **dim** = **dim** + input.dim() + 1.
 
 ```python
->>> x = torch.tensor([1, 2, 3, 4])
->>> torch.unsqueeze(x, 0)
+a = torch.arange(20).reshape(5,4)
+a.size()
+a.dim()
 
-tensor([[ 1,  2,  3,  4]])
+tensor([[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7],
+        [ 8,  9, 10, 11],
+        [12, 13, 14, 15],
+        [16, 17, 18, 19]])
+torch.Size([5, 4])
+2
 ```
-The shape of x turns from torch.Size([4]) to torch.Size([1, 4])
+
+First dimension: dim = 0.
+
 ```python
->>> torch.unsqueeze(x, 1)
+b = torch.unsqueeze(a,0)
+b.size()
+b.dim()
 
-tensor([[ 1],
-        [ 2],
-        [ 3],
-        [ 4]])
+tensor([[[ 0,  1,  2,  3],
+         [ 4,  5,  6,  7],
+         [ 8,  9, 10, 11],
+         [12, 13, 14, 15],
+         [16, 17, 18, 19]]])
+torch.Size([1, 5, 4])
+3
 ```
-The shape of x turns from torch.Size([4]) to torch.Size([4, 1]).
+
+Second dimension: dim = 1.
+```python
+b = torch.unsqueeze(a,1)
+b.size()
+```
+```python
+tensor([[[ 0,  1,  2,  3]],
+
+        [[ 4,  5,  6,  7]],
+
+        [[ 8,  9, 10, 11]],
+
+        [[12, 13, 14, 15]],
+
+        [[16, 17, 18, 19]]])
+torch.Size([5, 1, 4])
+3
+```
+
+Third dimension: dim = 2.
+
+```python
+b = torch.unsqueeze(a,2)
+b.size()
+b.dim()
+
+tensor([[[ 0],
+         [ 1],
+         [ 2],
+         [ 3]],
+
+        [[ 4],
+         [ 5],
+         [ 6],
+         [ 7]],
+
+        [[ 8],
+         [ 9],
+         [10],
+         [11]],
+
+        [[12],
+         [13],
+         [14],
+         [15]],
+
+        [[16],
+         [17],
+         [18],
+         [19]]])
+torch.Size([5, 4, 1])
+3
+```
+
+The last dimension: dim = -1.
+
+```python
+b = torch.unsqueeze(a,-1)
+b.size()
+b.dim()
+
+tensor([[[ 0],
+         [ 1],
+         [ 2],
+         [ 3]],
+
+        [[ 4],
+         [ 5],
+         [ 6],
+         [ 7]],
+
+        [[ 8],
+         [ 9],
+         [10],
+         [11]],
+
+        [[12],
+         [13],
+         [14],
+         [15]],
+
+        [[16],
+         [17],
+         [18],
+         [19]]])
+torch.Size([5, 4, 1])
+3
+```
 
 ### 1.3.2 Torch.squeeze
 
@@ -85,66 +190,84 @@ The shape of x turns from torch.Size([4]) to torch.Size([4, 1]).
 
 Returns a tensor with all the dimensions of input of size 1 removed.
 
-For example, if input is of shape: A * 1 * B * C * 1 * D)
-then the out tensor will be of shape: (A * B * C * D).
+For example, if input is of shape: **(A * 1 * B * C * 1 * D)**, 
+then the out tensor will be of shape: **(A * B * C * D)**.
 
-When dim is given, a squeeze operation is done only in the given dimension. If input is of shape: (A * 1 * B), 
-```squeeze(input, 0)``` leaves the tensor unchanged, but ```squeeze(input, 1)``` will squeeze the tensor to the shape 
-(A * B).
+When dim is given, a squeeze operation is done only in the given dimension. 
 
-#### Parameters
-- input (Tensor) – the input tensor.
+If input is of shape: **(A * 1 * B)**, ```squeeze(input, 0)``` leaves the tensor unchanged, 
+but ```squeeze(input, 1)``` will squeeze the tensor to the shape **(A * B)**.
 
-- dim (int, optional) – if given, the input will be squeezed only in this dimension
+- Parameters
+  - **input** (Tensor) – the input tensor.
 
-#### Examples
+  - **dim** (int, optional) – if given, the input will be squeezed only in this dimension
 
-```python
->>> x = torch.zeros(2, 1, 2, 1, 2)
->>> x.size()
-torch.Size([2, 1, 2, 1, 2])
->>> y = torch.squeeze(x)
->>> y.size()
-torch.Size([2, 2, 2])
->>> y = torch.squeeze(x, 0)
->>> y.size()
-torch.Size([2, 1, 2, 1, 2])
->>> y = torch.squeeze(x, 1)
->>> y.size()
-torch.Size([2, 2, 1, 2])
+- Examples
 
-```
+  ```python
+  x = torch.zeros(2, 1, 2, 1, 2)
+  x.size()
+  
+  torch.Size([2, 1, 2, 1, 2])
+  
+  y = torch.squeeze(x)
+  
+  y.size()
+  
+  torch.Size([2, 2, 2])
+  
+  y = torch.squeeze(x, 0)
+  y.size()
+  
+  torch.Size([2, 1, 2, 1, 2])
+  
+  y = torch.squeeze(x, 1)
+  y.size()
+  
+  torch.Size([2, 2, 1, 2])
+  ```
 
 ### 1.4 Torch.tensor.expand
 
 > Tensor.expand(*sizes) → Tensor
 
-Returns a new view of the ```self``` tensor with singleton dimensions expanded to a larger size.
+Returns a new **view** of the ```self``` tensor with singleton dimensions expanded to a larger size.
 
 Passing -1 as the size for a dimension means not changing the size of that dimension.
 
-##### Example1
+**Example 1**:
+
 ```python
->>> x = torch.tensor([[1], [2], [3]])
->>> x.size()
+x = torch.tensor([[1], [2], [3]])
+x.size()
+
+tensor([[1],
+        [2],
+        [3]])
 torch.Size([3, 1])
 ```
 ```python
->>> x.expand(3, 4)
+y = x.expand(3,4)
+y.size()
 
-tensor([[ 1,  1,  1,  1],
-        [ 2,  2,  2,  2],
-        [ 3,  3,  3,  3]])
+tensor([[1, 1, 1, 1],
+        [2, 2, 2, 2],
+        [3, 3, 3, 3]])
+torch.Size([3, 4])
 ```
 
 ```python
->>> x.expand(-1, 4)   # -1 means not changing the size of that dimension
+y = x.expand(-1, 4)   # -1 means not changing the size of that dimension
+y.size()
+
 tensor([[ 1,  1,  1,  1],
         [ 2,  2,  2,  2],
         [ 3,  3,  3,  3]])
+torch.Size([3, 4])
 ```
 
-When expanding the dimension of Tensor in higher dimension, the first element of torch.Size must
+When expanding the dimension of Tensor to a higher dimension, the **first element** of **torch.Size** must
 remain the same, which is the fundamental unit of a tensor.
 
 ```python
@@ -184,86 +307,94 @@ Repeats this tensor along the specified dimensions.
 Unlike ```expand()```, this function **copies the tensor’s data**.
 
 
-#### Note
-
 ```repeat()``` behaves differently from ```numpy.repeat```, but is more similar to numpy.tile. 
 For the operator similar to ```numpy.repeat```, see torch.repeat_interleave().
 
-#### Parameters
+- Parameters
 
-**sizes** (torch.Size or int...) – The number of times to repeat this tensor along each dimension
+  - **sizes** (torch.Size or int...) – The number of times to repeat this tensor along each dimension
 
-#### Example:
+- Example:
 
 ```python
->>> x = torch.tensor([1, 2, 3])
->>> x.repeat(4, 2)
+x = torch.tensor([1, 2, 3])
+x.repeat(4, 2)
+
 tensor([[ 1,  2,  3,  1,  2,  3],
         [ 1,  2,  3,  1,  2,  3],
         [ 1,  2,  3,  1,  2,  3],
         [ 1,  2,  3,  1,  2,  3]])
 
->>> x.repeat(4, 2, 1).size()
-torch.Size([4, 2, 3])
+x.repeat(4, 2, 1).size()
 
+torch.Size([4, 2, 3])
 ```
 
 **"copies the tensor’s data"** means when **repeat** a tensor to higher dimension,
-the tensor will full-fill every side of the space.
+
+the tensor will fulfill every side of the space.
 
 To the opposite, **expand** a tensor means that the tensor will be mapped to a higher
-dimension without copy.
+dimension **without copying**.
+
+
 ```python
->> x = torch.tensor([1,2,3])
->> x.size()
-torch.Size([3])
-
->> x.expand(3,3)
-tensor([[1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3]])
-
->> x.size()
-torch.Size([3, 3])
-
-```
-
-repeat:
-```python
->> x = torch.tensor([1,2,3])
->> x.size()
-torch.Size([3])
-
->> x.repeat(3,3)
-tensor([[1, 2, 3, 1, 2, 3, 1, 2, 3],
-        [1, 2, 3, 1, 2, 3, 1, 2, 3],
-        [1, 2, 3, 1, 2, 3, 1, 2, 3]])
-
+x = torch.tensor([1,2,3])
 x.size()
-torch.Size([3, 9])
-```
-
-```python
->> x = torch.tensor([1,2,3])
->> x.size()
 torch.Size([3])
-
->> x.repeat(3,5)
-tensor([[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
-        [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
-        [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]])
-
-x.size()
-torch.Size([3, 15])
 ```
 
-The process of repeat goes as copying the data of tensor from low dimension to higher
+- **expand**
+
+  ```python
+  x.expand(3,3)
+  tensor([[1, 2, 3],
+          [1, 2, 3],
+          [1, 2, 3]])
+  
+  x.size()
+  torch.Size([3, 3])
+  ```
+
+- **repeat**
+  ```python
+  x = torch.tensor([1,2,3])
+  x.size()
+  torch.Size([3])
+  
+  x.repeat(3,3)
+  tensor([[1, 2, 3, 1, 2, 3, 1, 2, 3],
+          [1, 2, 3, 1, 2, 3, 1, 2, 3],
+          [1, 2, 3, 1, 2, 3, 1, 2, 3]])
+  
+  x.size()
+  torch.Size([3, 9])
+  ```
+
+  ```python
+  x = torch.tensor([1,2,3])
+  x.size()
+  
+  torch.Size([3])
+  
+  tensor([1, 2, 3])
+  x.repeat(3,5)
+  tensor([[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+          [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+          [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]])
+  
+  x.size()
+  torch.Size([3, 15])
+  ```
+
+The process of **repeat** goes as copying the data of tensor from low dimension to higher
 dimension.
 
 The process of expand goes as mapping the tensor to a higher dimension, which means
-that the parameter in the lower dimension muse match the original size.
+that the parameter in the lower dimension must match the original size.
 
-i.e. following statement is not allowed:
+i.e. Following statement is not allowed:
+
 ```python
 x = torch.tensor([1,2,3])
 x = x.expand(3,5)
@@ -271,34 +402,32 @@ x = x.expand(3,5)
 x = x.expand(3,5)
 RuntimeError: The expanded size of the tensor (5) must match the existing size (3) at non-singleton dimension 1.  Target sizes: [3, 5].  Tensor sizes: [3]
 
-
 ```
 
-## 2. Get Elements From Scalar
+## 2. Get elements from tensor
 
 ### 2.1 Slice and index
 
 ```python
->> A = torch.arange(12).reshape(1,3,4)
+A = torch.arange(12).reshape(1,3,4)
 
 tensor([[[ 0,  1,  2,  3],
          [ 4,  5,  6,  7],
          [ 8,  9, 10, 11]]])
 
->> A[0]
+A[0]
 
 tensor([[ 0,  1,  2,  3],
         [ 4,  5,  6,  7],
         [ 8,  9, 10, 11]])
 
->> A[0,0:2,:]
+A[0,0:2,:]
 
 tensor([[0, 1, 2, 3],
         [4, 5, 6, 7]])
 ```
 
-The slice statement can be interpreted as get elements in _(z,y,x) = (0,[0:2],[:])_.
-
+The slice statement can be interpreted as get elements in (z,y,x) = (0,[0:2],[:]).
 
 
 ### 2.2 Conditional selection by torch.where()
@@ -307,10 +436,10 @@ The slice statement can be interpreted as get elements in _(z,y,x) = (0,[0:2],[:
 
 Return a tensor of elements selected from either x or y, depending on condition.
 
-#### Note
-The tensors ```condition```, ```x```, ```y``` must be broadcastable.
+The tensors condition```, ```x```, ```y``` must be broadcastable.
 
-#### Example
+**Example**:
+
 When ```condition``` is relative to ```x``` and ```y```,
 
 ```torch.where()``` is similar to ```replace```, which replaces original string by target string.
@@ -445,11 +574,11 @@ torch.Size([12, 12])
 
 - If ```diagonal``` < 0, it is **below** the main diagonal.
     ```python
-    >> b = torch.diag(a,diagonal=-1)
+    b = torch.diag(a,diagonal=-1)
     
     tensor([4, 9])
     
-    >> b.size()
+    b.size()
     
     torch.Size([2])
     ```
@@ -500,45 +629,39 @@ tensor([[100, 101, 102, 103],
             [108, 109, 110, 111]])
     
     c.size()
-    
     torch.Size([6, 4])
     ```
 - Concatenating **2 tensors** along **dimension 1**:
 
     ```python
-    >> d = torch.cat((a,b),1)
-    
+    d = torch.cat((a,b),1)
     tensor([[  0,   1,   2,   3, 100, 101, 102, 103],
             [  4,   5,   6,   7, 104, 105, 106, 107],
             [  8,   9,  10,  11, 108, 109, 110, 111]])
     
-    >> d.size()
-    
+    d.size()
     torch.Size([3, 8])
     ```
 
 - Concatenating **3 tensors** along **dimension 0**:
     ```python
-    >> a = torch.arange(0, 12).reshape(3, 4)
+    a = torch.arange(0, 12).reshape(3, 4)
     
     tensor([[ 0,  1,  2,  3],
             [ 4,  5,  6,  7],
             [ 8,  9, 10, 11]])
     
-    >> b = torch.arange(12, 24).reshape(3, 4)
-    
+    b = torch.arange(12, 24).reshape(3, 4)
     tensor([[12, 13, 14, 15],
             [16, 17, 18, 19],
             [20, 21, 22, 23]])
     
-    >> c = torch.arange(24, 36).reshape(3, 4)
-    
+    c = torch.arange(24, 36).reshape(3, 4)
     tensor([[24, 25, 26, 27],
             [28, 29, 30, 31],
             [32, 33, 34, 35]])
     
-    >> d = torch.cat((a,b,c),0)
-    
+    d = torch.cat((a,b,c),0)
     tensor([[ 0,  1,  2,  3],
             [ 4,  5,  6,  7],
             [ 8,  9, 10, 11],
@@ -549,25 +672,23 @@ tensor([[100, 101, 102, 103],
             [28, 29, 30, 31],
             [32, 33, 34, 35]])
     
-    >> d.size()
-    
+    d.size()
     torch.Size([9, 4])
     ```
 
 - Concatenating **3 tensors** along **dimension 1**:
     ```python
-    >> d = torch.cat((a,b,c),1)
-    
+    d = torch.cat((a,b,c),1)
     tensor([[ 0,  1,  2,  3, 12, 13, 14, 15, 24, 25, 26, 27],
             [ 4,  5,  6,  7, 16, 17, 18, 19, 28, 29, 30, 31],
             [ 8,  9, 10, 11, 20, 21, 22, 23, 32, 33, 34, 35]])
     
-    >> d.size()
-    
+    d.size()
     torch.Size([3, 12])
     ```
 
 ### 3.2 Concatenating by torch.stack()
+
 > torch.stack(tensors, dim=0, *, out=None) → Tensor
 
 Concatenates a sequence of tensors along a **new dimension**.
@@ -576,7 +697,8 @@ The tensor will be converted from **(A,B)** to **(H,A,B)**.
 
 All tensors need to be of **the same size**.
 
-#### Examples
+Examples are showed as follows:
+
 - Tensors in the **different** shapes:
     ```python
     >> a = torch.arange(0,12).reshape(3,4)
@@ -589,14 +711,14 @@ All tensors need to be of **the same size**.
     
     torch.Size([3, 4])
     
-    >> b = torch.arange(12,24).reshape(2,6)
+    b = torch.arange(12,24).reshape(2,6)
     
     tensor([[12, 13, 14, 15, 16, 17],
             [18, 19, 20, 21, 22, 23]])
     
-    >> c = torch.stack((a,b))
+    c = torch.stack((a,b))
     
-        c = torch.stack((a,b))
+    c = torch.stack((a,b))
     RuntimeError: stack expects each tensor to be equal size, 
     but got [3, 4] at entry 0 and [2, 6] at entry 1
     ```
@@ -617,10 +739,10 @@ All tensors need to be of **the same size**.
             [16, 17, 18, 19],
             [20, 21, 22, 23]])
     
-    >> b.size()
+    b.size()
     torch.Size([3, 4])
     
-    >> c = torch.stack((a,b))
+    c = torch.stack((a,b))
     tensor([[[ 0,  1,  2,  3],
              [ 4,  5,  6,  7],
              [ 8,  9, 10, 11]],
@@ -628,10 +750,9 @@ All tensors need to be of **the same size**.
             [[12, 13, 14, 15],
              [16, 17, 18, 19],
              [20, 21, 22, 23]]])
-    >> c.size()
+    c.size()
     torch.Size([2, 3, 4])
     ```
-
     ```a,b``` are concatenated to ```c```, from [3,4] to [2,3,4].
 
 ### 3.3 Splitting
@@ -642,94 +763,99 @@ Attempts to split a tensor into the specified number of chunks.
 
 Each chunk is a **view** of the input tensor.
 
-#### Parameters
-- **input** (Tensor) – the tensor to split
+- Parameters
+  - **input** (Tensor) – the tensor to split
 
-- **chunks** (int) – number of chunks to return
+  - **chunks** (int) – number of chunks to return
 
-- **dim** (int) – dimension along which to split the tensor
+  - **dim** (int) – dimension along which to split the tensor 
 
-#### Examples
+Take splitting as an example.
 
-- Splitting
+Splitting: 
 
-  - If the tensor size along the given dimesion ```dim``` is divisible by ```chunks```, 
-  **all returned chunks will be the same size**. 
-    ```python
-    >>> torch.arange(11).chunk(6)
+**(1)** If the tensor size along the given dimesion ```dim``` is divisible by ```chunks```, 
+**all returned chunks will be the same size**.
+
+  ```python
+  a = torch.arange(12).chunk(6)
+
+  (tensor([0, 1]),
+   tensor([2, 3]),
+   tensor([4, 5]),
+   tensor([6, 7]),
+   tensor([8, 9]),
+   tensor([10, 11]))
+  ```
+
+**(2)** If the tensor size along the given dimension ```dim``` is not divisible by ```chunks```, 
+**all returned chunks will be the same size, except the last one**. 
+
+```python
+    a= torch.arange(11).chunk(6)
+
     (tensor([0, 1]),
      tensor([2, 3]),
      tensor([4, 5]),
      tensor([6, 7]),
      tensor([8, 9]),
      tensor([10]))
-    ```
-  - If the tensor size along the given dimension ```dim``` is not divisible by ```chunks```, 
-  **all returned chunks will be the same size, except the last one**. 
-    ```python
-    >>> torch.arange(12).chunk(6)
-    (tensor([0, 1]),
-     tensor([2, 3]),
-     tensor([4, 5]),
-     tensor([6, 7]),
-     tensor([8, 9]),
-     tensor([10, 11]))
-    ```
+```
 
-  - If such Splitting is not possible, 
-  this function may **return less than the specified number of chunks**.
-    ```python
-    >>> torch.arange(13).chunk(6)
-    (tensor([0, 1, 2]),
-     tensor([3, 4, 5]),
+**(3)** If such splitting is not possible, this function may **return less than the specified number of chunks**.
+```python
+torch.arange(13).chunk(6)
+   (tensor([0, 1, 2]),
+    tensor([3, 4, 5]),
      tensor([6, 7, 8]),
      tensor([ 9, 10, 11]),
      tensor([12]))
-    ```
+ ```
 
-- Splitting along dimensions
+**(4)** Splitting along dimensions
 
-  - Splitting along **dimension 0**
+- Splitting along **dimension 0**
     ```python
-    >>> a = torch.arange(12).reshape(3,4)
-    tensor([[ 0,  1,  2,  3],
-            [ 4,  5,  6,  7],
-            [ 8,  9, 10, 11]])
+      a = torch.arange(12).reshape(3,4)
+      tensor([[ 0,  1,  2,  3],
+              [ 4,  5,  6,  7],
+              [ 8,  9, 10, 11]])
     
-    >>> b = torch.chunk(a,3,dim=0)
-    (tensor([[0, 1, 2, 3]]), tensor([[4, 5, 6, 7]]), tensor([[ 8,  9, 10, 11]]))
+      b = torch.chunk(a,3,dim=0)
+      (tensor([[0, 1, 2, 3]]), tensor([[4, 5, 6, 7]]), tensor([[ 8,  9, 10, 11]]))
     
-    >>> a.size()
-    torch.Size([3, 4])
+      a.size()
+      torch.Size([3, 4])
     
-    >>> b[0]
-    tensor([[0, 1, 2, 3]])
+      b[0]
+      tensor([[0, 1, 2, 3]])
     
-    >>> b[0].size()
-    torch.Size([1, 4])
-    ```
-  - Splitting along **dimension 1**
-    ````python
-    >>> a = torch.arange(12).reshape(3,4)
-    tensor([[ 0,  1,  2,  3],
-            [ 4,  5,  6,  7],
-            [ 8,  9, 10, 11]])
+      b[0].size()
+      torch.Size([1, 4])
+      ```
+- Splitting along **dimension 1**
+  ````python
+  a = torch.arange(12).reshape(3,4)
+  
+  tensor([[ 0,  1,  2,  3],
+          [ 4,  5,  6,  7],
+          [ 8,  9, 10, 11]])    
+  
+  b = torch.chunk(a,2,dim=1)
+  (tensor([[0, 1],
+          [4, 5],
+          [8, 9]]), tensor([[ 2,  3],
+          [ 6,  7],
+          [10, 11]]))
     
-    >>> b = torch.chunk(a,2,dim=1)
-    (tensor([[0, 1],
-            [4, 5],
-            [8, 9]]), tensor([[ 2,  3],
-            [ 6,  7],
-            [10, 11]]))
+  a.size()
+  torch.Size([3, 4])
     
-    >>> a.size()
-    torch.Size([3, 4])
+  b[0]
+  tensor([[0, 1],
+          [4, 5],
+          [8, 9]])
     
-    >>> b[0]
-    tensor([[0, 1],
-            [4, 5],
-            [8, 9]])
-    
-    >>> b[0].size()
-    torch.Size([3, 2])
-    ````
+  b[0].size()
+  torch.Size([3, 2])
+  ````
