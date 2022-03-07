@@ -1,10 +1,11 @@
-### 2.2.2 Tensor Generation
+# 2.2.2 Tensor Generation
 
-#### (1) ```torch.tensor()```
+## 1. torch.tensor()
 
 > torch.tensor(data, *, dtype=None, device=None, requires_grad=False, pin_memory=False) → Tensor
 
-Constructs a tensor with ```data```.
+Constructs a tensor with **data**.
+
 ```python
 A = torch.tensor([[1.0,1.0],[2,2]])
 
@@ -15,25 +16,28 @@ tensor([[1., 1.],
 > Tensor.size(dim=None) → torch.Size or int
 
 Returns the size of the ```self``` tensor.
-If dim is not specified, the returned value is a ```torch.Size```, a subclass of tuple. If dim is specified, returns an int holding the size of that dimension.
+If ```dim``` is not specified, the returned value is a ```torch.Size```, a subclass of tuple. 
+
+If ```dim``` is specified, returns an int holding the size of that dimension.
 
 We can also call ```.shape``` to get it, they all in the same type of ```torch.Size```
 ```python
->>> A.shape 
+A.shape 
 torch.Size([2, 2])
 
->>> A.size() 
+A.size() 
 torch.Size([2, 2])
 
->>> A.size(dim=1) 
+A.size(dim=1) 
 2
 ```
 
-#### (2) ```tensor.Tensor()```
+## 2. Torch.tensor()
+
 
 Create with pre-existing data.
 ```python
->>> C = torch.Tensor([1,2,3,4])
+C = torch.Tensor([1,2,3,4])
 
 C = tensor([1., 2., 3., 4.])
 ```
@@ -41,7 +45,7 @@ C = tensor([1., 2., 3., 4.])
 To create a tensor with specific size:
 
 ```python
->>> D = torch.Tensor(2,3)
+D = torch.Tensor(2,3)
 
 D = tensor([[4.5922e-07, 3.4281e-41, 4.6004e-07],
         [3.4281e-41, 4.6001e-07, 3.4281e-41]])
@@ -52,21 +56,19 @@ use ```torch.*_like``` tensor creation ops:
 
 **Torch.random_like()**
 
-Returns a tensor with the same size as input that is 
-filled with random numbers from a **uniform distribution** 
+Returns a tensor with the same size as input that is filled with random numbers from a **uniform distribution** 
 on the interval [0, 1)[0,1). 
 
 ```torch.rand_like(input)``` is equivalent to 
 
-```torch.rand(input.size(), dtype=input.dtype, layout=input.layout, 
-device=input.device)
-``` .
+```
+torch.rand(input.size(), dtype=input.dtype, layout=input.layout, device=input.device).
 ```
 
 **Torch.randn_like**
 
-Returns a tensor with the **same size** as input that is 
-filled with random numbers from a **normal distribution** with mean 0 and variance 1. 
+Returns a tensor with the **same size** as input that is filled with random numbers from a **normal distribution** with mean 0 and variance 1. 
+
 ```torch.randn_like(input)``` is equivalent to 
 ```torch.randn(input.size(), dtype=input.dtype, layout=input.layout, device=input.device)```.
 
@@ -81,7 +83,7 @@ We also have:
 **full_like**: 	Returns a tensor with the same size as **input** filled with **fill_value**.
 
 
-### (3) Scalar and Numpy
+### 3. Tensor and Numpy
 
 > torch.as_tensor(data, dtype=None, device=None) → Tensor
 
@@ -107,8 +109,8 @@ From ```numpy.array``` to ```tensor```, here **device** is set to ```cuda```.
 ```python
 a = numpy.array([1, 2, 3])
 t = torch.as_tensor(a)
-t
 
+t
 tensor([ 1,  2,  3])
 ```
 
@@ -136,79 +138,61 @@ a
 array([1,  2,  3])
 ```
 
-### (4) Generate scalar by using random generator
+## 4. Generate tensor by using random generator
 
-#### class Generator
+### 4.1 class Generator
 
 > CLASS torch.Generator(device='cpu') → Generator
+
 
 Creates and returns a generator object that manages the state of the algorithm which produces pseudo random numbers. 
 Used as a keyword argument in many ```In-place random sampling``` functions.
 
-##### Basic
-###### Parmeters
+ - Returns: An **torch.Generator** object.
 
-**device** (torch.device, optional) – the desired device for the generator.
+ - Return type: Generator
 
-###### Returns
 
-An torch.Generator object.
+ - Functions
+    - **get_state() → Tensor**: Returns the Generator state as a torch.ByteTensor.
 
-##### Return type
+    - **initial_seed() → int**: Returns the initial seed for generating random numbers.
+    - **manual_seed(seed) → Generator**: Sets the seed for generating random numbers. Returns a torch.Generator object. It is recommended to set a large seed, i.e. a number that has a good balance of 0 and 1 bits. 
+    Avoid having many 0 bits in the seed.
+    - **seed() → int**: Gets a non-deterministic random number from std::random_device or the current time and uses it to seed a Generator.
+    - **set_state(new_state) → void**: Sets the Generator state.
+ - Parameters:
+    - **new_state** (torch.ByteTensor) – The desired state.
+- Example:
+    ```python
+    g_cpu = torch.Generator()
+    g_cuda = torch.Generator(device='cuda')
+    g_cpu = torch.Generator()
+    g_cpu_other = torch.Generator()
+    g_cpu.set_state(g_cpu_other.get_state())
+    ```
 
-Generator
-
-##### Example
-```python
->>> g_cpu = torch.Generator()
->>> g_cuda = torch.Generator(device='cuda')
-```
-
-###### Functions
-
-**get_state() → Tensor**: Returns the Generator state as a torch.ByteTensor.
-
-**initial_seed() → int**: Returns the initial seed for generating random numbers.
-**manual_seed(seed) → Generator**:
-
-Sets the seed for generating random numbers. Returns a torch.Generator object. It is recommended to set a large seed, i.e. a number that has a good balance of 0 and 1 bits. 
-Avoid having many 0 bits in the seed.
-
-**seed() → int**: Gets a non-deterministic random number from std::random_device or the current time and uses it to seed a Generator.
-
-**set_state(new_state) → void**: Sets the Generator state.
- 
-Parameters: 
-
-**new_state** (torch.ByteTensor) – The desired state.
-
-Examples:
-```python
->>> g_cpu = torch.Generator()
->>> g_cpu_other = torch.Generator()
->>> g_cpu.set_state(g_cpu_other.get_state())
-```
-
-### (4)Random with Normal Distribution
+### 5. Random with normal distribution
 
 > torch.normal(mean, std, *, generator=None, out=None) → Tensor
 
 Returns a tensor of random numbers drawn from separate normal distributions whose **mean and standard deviation** are given.
 
-Parameters:
+ - Parameters:
 
-- **mean** (Tensor) – the tensor of per-element means
+   - **mean** (Tensor) – the tensor of per-element means
 
-- **std** (Tensor) – the tensor of per-element standard deviations
+   - **std** (Tensor) – the tensor of per-element standard deviations
 
-Example:
+ - Examples:
 
-```python
->>> torch.normal(mean=torch.arange(1., 11.), std=torch.arange(1, 0, -0.1))
-tensor([  1.0425,   3.5672,   2.7969,   4.2925,   4.7229,   6.2134,
-          8.0505,   8.1408,   9.0563,  10.0566])
-```
-### (5) Basic Cases
+    ```python
+    >>> torch.normal(mean=torch.arange(1., 11.), std=torch.arange(1, 0, -0.1))
+    tensor([  1.0425,   3.5672,   2.7969,   4.2925,   4.7229,   6.2134,
+              8.0505,   8.1408,   9.0563,  10.0566])
+    ```
+### 6. Basic Cases
+ 
 Some standard or popular used functions to generate scalars are showed as following:
 
 **torch.arrange(start, end, step)**:
@@ -221,7 +205,7 @@ Creates a one-dimensional tensor of size **steps** whose values are evenly space
 
 (start, start+(end-start)/steps-1, ..., start + (steps-2)* (end-start)/steps-1,end)
 
-**Example**:
+**Examples**:
 ```python
 >>> torch.linspace(3, 10, steps=5)
 tensor([  3.0000,   4.7500,   6.5000,   8.2500,  10.0000])
@@ -236,7 +220,3 @@ tensor([-10.,  -5.,   0.,   5.,  10.])
 tensor([-10.])
 
 ```
-
-
-
-
