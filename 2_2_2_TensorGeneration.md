@@ -16,6 +16,7 @@ tensor([[1., 1.],
 > Tensor.size(dim=None) → torch.Size or int
 
 Returns the size of the ```self``` tensor.
+
 If ```dim``` is not specified, the returned value is a ```torch.Size```, a subclass of tuple. 
 
 If ```dim``` is specified, returns an int holding the size of that dimension.
