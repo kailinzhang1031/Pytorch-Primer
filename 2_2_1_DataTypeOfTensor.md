@@ -1,4 +1,4 @@
-# CheckPoint 2.2.1 Data Types Of Tensor
+# 2.2.1 Data Types Of Tensor
 
 ##  1.  Initializing and basic operations
 
@@ -112,9 +112,3 @@ Changed to ```torch.float32```, the dtype for torch.FloatTensor:
 >>> torch.get_default_dtype()
 torch.float32
 ```
-
-
-
-
-
-
