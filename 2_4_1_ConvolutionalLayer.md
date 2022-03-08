@@ -89,9 +89,9 @@ is a matrix in the shape of **(512, 512)**, which is in **gray style**.
 
 **(3) Ndarray to Tensor**
 
-Reshape array in the size of **(512,512)** to **(1,1,512,512)**.
+Reshape the image array in the size of **(512,512)** to **(1,1,512,512)**.
 
-Convert array to tensor.
+Convert the image array to tensor.
 
 ```python
 imh, imw = myimgray.shape
