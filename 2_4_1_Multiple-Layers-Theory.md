@@ -1,4 +1,4 @@
-# 2.4.1 Genral Layers: Theory
+# 2.4.1 Multiple Layers: Theory
 
 ## 1. Convolutional Layer
 
@@ -82,4 +82,3 @@ Here shows images for 4 activation function.
 | torch.nn.Linear() | Applies a linear transformation to the incoming data: $y = xA^T + b$ |
 
 Fully connected layer = linear layer + activation layer
-
