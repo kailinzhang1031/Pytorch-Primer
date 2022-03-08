@@ -38,7 +38,7 @@
   
 - Shape
   - Input: $(N, C_{in}, H_{in}, W_{in}) )$
-  - Output: $(N, C_{out}, H_{out}, W_{out})$ where $H_{out}=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel\_\size[0]-1)-1)/stride[0] +1\rfloor$ $W_{out}=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel\_\size[0]-1)-1)/stride[1] +1\rfloor$
+  - Output: $(N, C_{out}, H_{out}, W_{out})$ where $H_{out}=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel/_/size[0]-1)-1)/stride[0] +1\rfloor$ $W_{out}=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel/_/size[0]-1)-1)/stride[1] +1\rfloor$
 
 ## 2. Pooling Layer
 
