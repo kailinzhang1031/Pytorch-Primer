@@ -43,7 +43,7 @@
 ## 2. Pooling Layer
 
 | Class | Description |
-| :--: | :--: |
+| :---: | :---: |
 | torch.nn.MaxPool1d() | Applies a 1D max pooling over an input signal composed of several input planes. |
 | torch.nn.MaxPool2d() | Applies a 2D max pooling over... |
 | torch.nn.MaxPool3d() | Applies a 3D max pooling over... |
