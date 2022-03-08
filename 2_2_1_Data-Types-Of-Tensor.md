@@ -65,16 +65,17 @@ Sets the default floating point dtype to ```d```.
 
 Initial default for floating point is ```torch.float32```, Python floats are interpreted as float32.
 ```python
->>> torch.tensor([1.2, 3]).dtype
+torch.tensor([1.2, 3]).dtype
 
 torch.float32
 
->>> torch.set_default_dtype(torch.float64)
+torch.set_default_dtype(torch.float64)
 
 ```
 Python floats are now interpreted as float64:
 ```python
->>> torch.tensor([1.2, 3]).dtype    # a new floating point tensor
+torch.tensor([1.2, 3]).dtype    # a new floating point tensor
+
 torch.float64
 ```
 
@@ -89,6 +90,7 @@ Get the current default floating point ```torch.dtype```.
 Initial default for floating point is ```torch.float32```:
 ```python
 torch.get_default_dtype()
+
 torch.float32
 ```
 
