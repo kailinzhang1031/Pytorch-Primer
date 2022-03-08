@@ -238,7 +238,7 @@ Size after MaxPooling:  **torch.Size([2, 254, 254])**
 
 ### 2.4 Average Pooling Layer
 
-Size before convolution:  (512, 512)
+Size before convolution:  **(512, 512)**
 
 Size after convolution:  **torch.Size([2, 508, 508])**
 
