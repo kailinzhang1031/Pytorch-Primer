@@ -38,12 +38,12 @@
   
 - Shape
   - Input: $(N, C_{in}, H_{in}, W_{in}) )$
-  - Output: $(N, C_{out}, H_{out}, W_{out})$ where $H_out=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel-size[0]-1)-1)/stride[0] +1\rfloor$ $W_out=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel`size[0]-1)-1)/stride[1] +1\rfloor$
+  - Output: $(N, C_{out}, H_{out}, W_{out})$ where $H_{out}=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel-size[0]-1)-1)/stride[0] +1\rfloor$ $W_{out}=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel`size[0]-1)-1)/stride[1] +1\rfloor$
 
 ## 2. Pooling Layer
 
-| Class for layers | Description |
-| :----: | :---- : |
+| Class | Description |
+| :--: | :--: |
 | torch.nn.MaxPool1d() | Applies a 1D max pooling over an input signal composed of several input planes. |
 | torch.nn.MaxPool2d() | Applies a 2D max pooling over... |
 | torch.nn.MaxPool3d() | Applies a 3D max pooling over... |
