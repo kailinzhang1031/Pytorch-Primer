@@ -115,7 +115,7 @@ def convertConv4d(myimgray):
     ker = ker.reshape((1, 1, kersize, kersize))
 ```
 
-Convolution operations.
+Convolution operation.
 ```python
     conv2d = nn.Conv2d(1, 2, (kersize, kersize), bias=False)
 ```
