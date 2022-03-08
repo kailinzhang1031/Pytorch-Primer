@@ -38,7 +38,7 @@
   
 - Shape
   - Input: $(N, C_{in}, H_{in}, W_{in}) )$
-  - Output: $(N, C_{out}, H_{out}, W_{out})$ where $H_out=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel`size[0]-1)-1)/stride[0] +1\rfloor$ $W_out=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel`size[0]-1)-1)/stride[1] +1\rfloor$
+  - Output: $(N, C_{out}, H_{out}, W_{out})$ where $H_out=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel-size[0]-1)-1)/stride[0] +1\rfloor$ $W_out=\ \lfloor(H_in+2\times padding[0]-dilation[0]×(kernel`size[0]-1)-1)/stride[1] +1\rfloor$
 
 ## 2. Pooling Layer
 
@@ -62,7 +62,7 @@
 
 ## 3. Activation Function
 
-Here shows images for 4 activation function.
+Here shows images for 4 activation functions.
 
 ## 4. Recurrent Layer
 
