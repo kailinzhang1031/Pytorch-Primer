@@ -187,7 +187,7 @@ torch.Size([1, 1, 512, 512])
 
 Convolutional Layer extracts the outline of the grayscale image.
 
-Define edge detection convolutional kernels and set dimensions as 1 * 1 * 5 * 5.
+Define edge detection convolutional kernels and set dimensions as **(1 * 1 * 5 * 5)**.
 
 ```python
 def convertConv4d(myimgray):
