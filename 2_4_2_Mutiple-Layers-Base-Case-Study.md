@@ -240,8 +240,8 @@ Size after MaxPooling:  **torch.Size([2, 254, 254])**
 
 Size before convolution:  (512, 512)
 
-Size after convolution:  torch.Size([2, 508, 508])
+Size after convolution:  **torch.Size([2, 508, 508])**
 
-Size before AveragePooling:  torch.Size([1, 2, 508, 508])
+Size before AveragePooling:  **torch.Size([1, 2, 508, 508])**
 
-Size after AveragePooling: torch.Size([1, 2, 254, 254])
+Size after AveragePooling: **torch.Size([1, 2, 254, 254])**
