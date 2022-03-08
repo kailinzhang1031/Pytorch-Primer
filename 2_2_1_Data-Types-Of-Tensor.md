@@ -93,11 +93,12 @@ torch.float32
 ```
 
 ```python
->>> torch.set_default_dtype(torch.float64)
+torch.set_default_dtype(torch.float64)
 ```
 Default is now changed to ```torch.float64```:
 ```python
->>> torch.get_default_dtype()
+torch.get_default_dtype()
+
 torch.float64
 ```
 Setting tensor type also affects this:
