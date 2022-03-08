@@ -14,7 +14,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 
 def convertConv4d(myimgray):
-    print('Size before convolution: ', myimgray.shape)
+    # print('Size before convolution: ', myimgray.shape)
     kersize = 5
     ker = torch.ones(kersize, kersize, dtype=torch.float32) * -1
     ker[2, 2] = 24
@@ -29,7 +29,7 @@ def convertConv4d(myimgray):
 
 
 def maxPool(imconv2dout):
-    print('Size before MaxPooling: ', imconv2dout.shape)
+    # print('Size before MaxPooling: ', imconv2dout.shape)
     kernel_size = 5
     torch.nn.MaxPool2d(kernel_size=kernel_size, stride=None, padding=0, dilation=1, return_indices=False,
                        ceil_mode=False)
@@ -41,11 +41,11 @@ def maxPool(imconv2dout):
 
 
 def avgPool(imconv2out):
-    print('Size before AveragePooling: ', imconv2out.shape)
+    # print('Size before AveragePooling: ', imconv2out.shape)
     avgPool2 = nn.AvgPool2d(2, stride=2)
     pool2_out = avgPool2(imconv2out)
     pool2_out_im = pool2_out.squeeze()
-    print('Size after AveragePooling:', pool2_out.shape)
+    # print('Size after AveragePooling:', pool2_out.shape)
     return pool2_out_im
 
 
