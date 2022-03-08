@@ -93,7 +93,7 @@ The usage of this function is similar to ```numpy.allclose```.
     ```python
     torch.trace(torch.arrange(9.0).reshape(3,3))
     ```
-### Statistic Calculation
+### 2.3 Statistic Calculation
 
 | Function | Description |
 | :---: | :---: |
