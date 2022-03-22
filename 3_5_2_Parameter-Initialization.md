@@ -63,7 +63,9 @@ testnet.apply(int_weights)
 print(testnet.conv1.weight)
 ```
 
-## 1. Weight Initialization For A Layer
+## 2. Illustration
+
+### 2.1 Weight Initialization For A Layer
 
 - Define a convolutional layer to map 3 features to 16 features.
     ```python
@@ -83,7 +85,7 @@ print(testnet.conv1.weight)
      - Check the parameter.
        - conv1.weight: torch.Size([16, 3, 3, 3])
 
-## 2. Weight Instantiation For A Net
+### 2.2 Weight Instantiation For A Net
 
 - Define a net and instantiate it.
   ```python
