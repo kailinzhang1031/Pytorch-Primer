@@ -95,7 +95,7 @@ Training model using unprocessed data.
 
 The result of training and testing on unprocessed data is shown below.
 
-![Images/5_6_Training-Without-Standardization.png]
+![https://github.com/kailinzhang1031/Pytorch-Primer/blob/main/Images/5_6_Training-Without-Standardization.png]
 
 The loss function is fluctuating and doesn't restrain.
 
@@ -104,7 +104,7 @@ Training model using standardized data.
 As the figure showed below, the loss function restrains and the accuracy
 reaches a high rate.
 
-![Images/5_7_Training-With-Standardization.png]
+![image](Images/5_7_Training-With-Standardization.png)
 
 test accuracy:  0.9357080799304952
 
