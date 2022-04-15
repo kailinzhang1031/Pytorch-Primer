@@ -208,11 +208,8 @@ We can use ```visualLoss``` to visualize the loss during training process.
 
 Here we make prediction on our net and set criteria as average absolute loss.
 
+We can also use ```visualDiff``` to visualize difference between original samples and predictions.
+
 Absolute error on test set is:  0.3907996601340167
 
 ![image](Images/5_12_Orginal-Y-and-Prediction-on-test-set.png)
-
-
-
-
-
