@@ -33,14 +33,14 @@ Figure 4 displays histograms of parameters.
 
 Figure 5 displays time series in the training process.
 
-[image](Images/4_1_1_Visualization-of-training-process-using-tensorboardX-1.jpg)
+[image](Images/4_3_1_Visualization-of-training-process-using-tensorboardX-1.jpg)
 
-[image](Images/4_1_2_Visualization-of-training-process-using-tensorboardX-2.jpg)
+[image](Images/4_3_2_Visualization-of-training-process-using-tensorboardX-2.jpg)
 
-[image](Images/4_1_3_Visualization-of-training-process-using-tensorboardX-3.jpg)
+[image](Images/4_3_3_Visualization-of-training-process-using-tensorboardX-3.jpg)
 
-[image](Images/4_1_4_Visualization-of-training-process-using-tensorboardX-4.jpg)
+[image](Images/4_3_4_Visualization-of-training-process-using-tensorboardX-4.jpg)
 
-[image](Images/4_1_5_Visualization-of-training-process-using-tensorboardX-5.jpg)
+[image](Images/4_3_5_Visualization-of-training-process-using-tensorboardX-5.jpg)
 
 
