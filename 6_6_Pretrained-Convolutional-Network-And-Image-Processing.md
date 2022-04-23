@@ -260,7 +260,7 @@ Size of features after max pooling :  torch.Size([1, 64, 112, 112])
 
 Size of features of the deeper layer:  torch.Size([1, 512, 28, 28])
 
-![image](Images/6_24_Features-of-the-deeper-laye.png)
+![image](Images/6_24_Features-of-the-deeper-layer.png)
 
 Using VGG16:
 
