@@ -25,22 +25,21 @@ We can launch terminal and run the command: tensorboard --logdir='data/log'.
 
 Figure 1 displays loss and accuracy in the training process.
 
+[Figure1](Images/4_3_1_Visualization-of-training-process-using-tensorboardX-1.jpg)
+
 Figure 2 displays images in a batch.
+
+[Figure2](Images/4_3_2_Visualization-of-training-process-using-tensorboardX-2.jpg)
 
 Figure 3 displays distributions of parameters.
 
+[Figure3](Images/4_3_3_Visualization-of-training-process-using-tensorboardX-3.jpg)
+
 Figure 4 displays histograms of parameters.
+
+
+[Figure4](Images/4_3_4_Visualization-of-training-process-using-tensorboardX-4.jpg)
 
 Figure 5 displays time series in the training process.
 
-[image](Images/4_3_1_Visualization-of-training-process-using-tensorboardX-1.jpg)
-
-[image](Images/4_3_2_Visualization-of-training-process-using-tensorboardX-2.jpg)
-
-[image](Images/4_3_3_Visualization-of-training-process-using-tensorboardX-3.jpg)
-
-[image](Images/4_3_4_Visualization-of-training-process-using-tensorboardX-4.jpg)
-
-[image](Images/4_3_5_Visualization-of-training-process-using-tensorboardX-5.jpg)
-
-
+[Figure5](Images/4_3_5_Visualization-of-training-process-using-tensorboardX-5.jpg)
