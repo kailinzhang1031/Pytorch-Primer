@@ -249,7 +249,7 @@ heatmap = heatmap.numpy()
 
 Here we use the following image to illustrate.
 
-![image](6_22_Elephant(Original).png)
+![image](Images/6_22_Elephant(Original).png)
 
 
 input_im.shape:  torch.Size([1, 3, 224, 224])
