@@ -121,7 +121,7 @@ for ii, lab in enumerate(prelab):
     print('index: ',lab,' label: ',labels[lab],' || ',prob[ii])
 
 ```
-## 1.2 Custom Network
+## 1.2 Customed Network
 
 Using our own network.
 
